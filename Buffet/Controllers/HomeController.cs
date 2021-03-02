@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Buffet.Models;
+using Buffet.Models.Buffet.Cliente;
+using Buffet.ViewModels.Home;
 
 namespace Buffet.Controllers
 {
@@ -26,6 +28,23 @@ namespace Buffet.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult Clientes()
+        {
+            var clienteService = new ClienteService();
+            var listaDeClientes = clienteService.obterClientes();
+
+            var viewModel = new ClientesViewModel();
+            foreach (ClienteEntity clienteEntity in listaDeClientes)
+            {
+                viewModel.Clientes.Add(new Cliente
+                {
+                    Nome = clienteEntity.Nome,
+                    DataDeNascimento = clienteEntity.DataNascimento.ToString()
+                });
+            }
+            return View(viewModel);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
