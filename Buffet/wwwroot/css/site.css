@@ -1,7 +1,16 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
+/* External resources */
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Open+Sans&display=swap');
+
+* {
+  font-family: "Open Sans", sans-serif;
+}
+
 a.navbar-brand {
+  font-family: 'Lobster', cursive;
+  font-size: 1.6rem;
   white-space: normal;
   text-align: center;
   word-break: break-all;
@@ -35,13 +44,6 @@ html {
   }
 }
 
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
@@ -62,10 +64,128 @@ body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
 }
+
+body.outer::before {
+  background-image: url("../img/feast.jpg");
+  background-size: cover;
+  content: "";
+  display: block;
+  filter: brightness(1.2) saturate(.4);
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
+}
+
+/* Custom colors */
+* {
+  color: #333;
+}
+
+body.inner {
+  background-color: #F7EDE2;
+}
+
+.btn.btn-outline-light.btn-brand {
+  color: #F7EDE2;
+  border-color: #F7EDE2;
+}
+
+.btn.btn-outline-light.btn-brand:hover {
+  color: #F28482;
+  background-color: #F7EDE2;
+}
+
+.navbar-light .navbar-brand {
+  color: #333;
+}
+
+.bg-brand {
+  background-color: #F28482;
+}
+
+.non-opaque {
+  background-color: #ffffffc9;
+}
+
+/* Custom positions */
+.v-center {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+
+.input-group-addon {
+  padding: .5rem .75rem;
+  margin-bottom: 0;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.25;
+  color: #495057;
+  text-align: center;
+  background-color: #e9ecef;
+  border: 1px solid rgba(0,0,0,.15);
+  border-left-color: rgba(0, 0, 0, 0.15);
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-radius: .25rem;
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+
+.input-group .form-control:not(:first-child), .input-group-addon:not(:first-child), .input-group-btn:not(:first-child) > .btn, .input-group-btn:not(:first-child) > .btn-group > .btn, .input-group-btn:not(:first-child) > .dropdown-toggle, .input-group-btn:not(:last-child) > .btn-group:not(:first-child) > .btn, .input-group-btn:not(:last-child) > .btn:not(:first-child) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-control + .input-group-addon:not(:first-child) {
+  border-left: 0;
+}
+
+/* Side menu */
+.menu-link {
+  cursor: pointer;
+}
+
+.sidenav {
+  height: 100%; 
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #F5CAC3;
+  overflow-x: hidden;
+  padding-top: 60px;
+  transition: 0.5s;
+}
+
+/* navigation menu links */
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #333;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
 }
