@@ -8,7 +8,15 @@
                 <div class="card non-opaque">
                   <div class="card-body">
                     <h5 class="card-title">Bem vindo ao iFeast</h5>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sollicitudin, est id sollicitudin tristique, sapien turpis luctus magna, nec posuere lacus augue eu sem.</p>
+                      <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sollicitudin, est id sollicitudin tristique, sapien turpis luctus magna, nec posuere lacus augue eu sem.</p>
+                      <p class="card-text">
+                          <ul>
+                              @foreach (var cliente in @Model.clientes)
+                              {
+                                  <li>O cliente @cliente.Nome possui o id @cliente.Id</li>
+                              }
+                          </ul>
+                      </p>
                   </div>
                 </div>
             </div>

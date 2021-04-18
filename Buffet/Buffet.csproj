@@ -20,6 +20,11 @@
 
     <ItemGroup>
       <Compile Remove="Views\Home\Privacy.cshtml.cs" />
+      <Compile Remove="ViewModels\Home\ClientesViewModel.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="Views\Home\Clientes.cshtml" />
     </ItemGroup>
 
 </Project>

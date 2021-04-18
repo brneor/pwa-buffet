@@ -1,5 +1,4 @@
 @using Buffet.ViewModels.Home
-@model Buffet.ViewModels.Home.ClientesViewModel 
 @{
     ViewData["Title"] = "Clientes";
 }
@@ -10,6 +9,6 @@
 <ul>
     @foreach (Cliente cliente in Model.Clientes)
     {
-        <li>@cliente.Nome nascido em @cliente.DataDeNascimento</li>
+        <li>@cliente.Nome nascido em @cliente.Nome</li>
     }
 </ul>

@@ -1,29 +1,21 @@
 using System;
 using System.Collections.Generic;
-using System.IO.Compression;
+using System.Linq;
+using Buffet.Data;
 
 namespace Buffet.Models.Buffet.Cliente
 {
     public class ClienteService
     {
-        public List<ClienteEntity> obterClientes()
+        private readonly DatabaseContext _databaseContext;
+        public ClienteService(DatabaseContext databaseContext)
         {
-            var listaDeClientes = new List<ClienteEntity>();
-         
-            listaDeClientes.Add(new ClienteEntity
-            {
-                Id = 1,
-                Nome = "Breno",
-                DataNascimento = new DateTime(1992, 6, 30)
-            });
-            listaDeClientes.Add(new ClienteEntity
-            {
-                Id = 2,
-                Nome = "José",
-                DataNascimento = new DateTime(1987, 2, 21)
-            });
-            
-            return listaDeClientes;
+            _databaseContext = databaseContext;
+        }
+        
+        public List<ClienteEntity> ObterClientes()
+        {
+            return _databaseContext.Clientes.ToList();
         }
     }
 }
