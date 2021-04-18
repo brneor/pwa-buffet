@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Buffet.Models.Acesso;
 using Buffet.RequestModel;
 using Buffet.ViewModels.Acesso;
@@ -20,7 +22,7 @@ namespace Buffet.Controllers
         {
             var viewModel = new LoginViewModel();
 
-            viewModel.Mensagem = (string) TempData["errLogin"];
+            viewModel.Mensagem = (string) TempData["msg-login"];
             
             return View(viewModel);
         }
@@ -35,7 +37,7 @@ namespace Buffet.Controllers
 
             if (email == null || senha == null)
             {
-                TempData["errLogin"] = "É necessário preencher email e senha!";
+                TempData["msg-login"] = "É necessário preencher email e senha!";
                 return Redirect(redirectUrl);
             }
             
@@ -50,38 +52,43 @@ namespace Buffet.Controllers
         [HttpGet]
         public IActionResult CreateAccount()
         {
-            var viewModel = new LoginViewModel();
+            var viewModel = new CreateAccountViewModel();
 
-            viewModel.Mensagem = (string) TempData["errCadastro"];
+            viewModel.Mensagem = (string) TempData["msg-cadastro"];
+            viewModel.ErrosCadastro = (string[]) TempData["erros-cadastro"];
             
             return View(viewModel);
         }
         
         [HttpPost]
-        public RedirectResult CreateAccount(AcessoLoginRequestModel request)
+        public async Task<RedirectToActionResult> CreateAccount(AcessoLoginRequestModel request)
         {
-            var redirectUrl = "/Acesso/CreateAccount";
-
             var email = request.UserEmail;
             var senha = request.UserPasswd;
 
             if (email == null || senha == null)
             {
-                TempData["errCadastro"] = "É necessário preencher email e senha!";
-                return Redirect(redirectUrl);
+                TempData["msg-cadastro"] = "É necessário preencher email e senha!";
+                return RedirectToAction("CreateAccount");
             }
 
             try
             {
-                _acessoService.CriarUsuario(email, senha);
-                return Redirect("/Acesso/Login");
+                await _acessoService.CriarUsuario(email, senha);
+                TempData["msg-login"] = "Cadastro realizado com sucesso";
+                return RedirectToAction("Login");
             }
-            catch (Exception exception)
+            catch (CadastrarUsuarioException exception)
             {
-                TempData["errCadastro"] = exception.Message;
+                var listaErros = new List<String>();
+                foreach (var identityError in exception.Erros)
+                {
+                    listaErros.Add(identityError.Description);
+                }
+                TempData["erros-cadastro"] = listaErros;
             }
             
-            return Redirect(redirectUrl);
+            return RedirectToAction("CreateAccount");
         }
     }
 }

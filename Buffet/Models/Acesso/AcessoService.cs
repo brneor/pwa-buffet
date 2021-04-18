@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 
 namespace Buffet.Models.Acesso
@@ -13,7 +15,7 @@ namespace Buffet.Models.Acesso
             _signInManager = signInManager;
         }
 
-        public void CriarUsuario(string email, string senha)
+        public async Task CriarUsuario(string email, string senha)
         {
             var novoUsuario = new Usuario()
             {
@@ -21,7 +23,12 @@ namespace Buffet.Models.Acesso
                 Email = email
             };
 
-            var resultado = _userManager.CreateAsync(novoUsuario, senha);
+            var resultado = await _userManager.CreateAsync(novoUsuario, senha);
+
+            if (!resultado.Succeeded)
+            {
+                throw new CadastrarUsuarioException(resultado.Errors);
+            }
             
         }
 

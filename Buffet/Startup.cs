@@ -34,6 +34,18 @@ namespace Buffet
             services.AddDbContext<DatabaseContext>(options =>
                 options.UseMySql(Configuration.GetConnectionString("BuffetDb")));
             
+            // Configura o controle de acesso de usuários
+            services.AddIdentity<Usuario, Papel>(options =>
+            {
+                options.User.RequireUniqueEmail = true;
+                options.Password.RequiredLength = 8;
+            }).AddEntityFrameworkStores<DatabaseContext>();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Acesso/Login";
+            });
+            
             services.AddTransient<ClienteService>();
             services.AddTransient<AcessoService>();
         }
@@ -56,6 +68,8 @@ namespace Buffet
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
