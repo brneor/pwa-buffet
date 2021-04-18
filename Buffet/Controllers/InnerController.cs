@@ -9,7 +9,7 @@ namespace Buffet.Controllers
             return View();
         }
 
-        public IActionResult User()
+        public new IActionResult User()
         {
             return View();
         }

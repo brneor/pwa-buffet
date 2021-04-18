@@ -1,3 +1,5 @@
+@model Buffet.ViewModels.Acesso.LoginViewModel
+
 @{
     ViewData["Title"] = "Criar conta";
 }
@@ -8,25 +10,31 @@
             <div class="card non-opaque">
                 <div class="card-body">
                     <h5 class="card-title text-center">@ViewData["Title"]</h5>
-                    <form method="POST" action="/Acesso/Cadastrar">
+                    <form method="POST" action="/Acesso/CreateAccount">
+                          @if (Model.Mensagem != null)
+                          {
+                              <div class="alert alert-warning" role="alert">
+                                  @Model.Mensagem
+                              </div>
+                          }
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email</label>
                             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                             <small id="emailHelp" class="form-text text-muted">Nós nunca compartilhamos essa informação com terceiros.</small>
                         </div>
-                          
+
                         <div class="form-group">
                             <label for="exampleInputPassword1">Senha</label>
                             <div class="input-group" id="show_hide_password">
-                              <input class="form-control" type="password">
-                              <div class="input-group-addon">
-                                <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
-                              </div>
+                                <input class="form-control" type="password">
+                                <div class="input-group-addon">
+                                    <a href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a>
+                                </div>
                             </div>
                         </div>
 
                         <button type="submit" class="btn btn-primary ml-auto">Criar</button>
-                        
+
                         <script >
                         window.addEventListener('load', function(){
                             $("#show_hide_password a").on('click', function(event) {

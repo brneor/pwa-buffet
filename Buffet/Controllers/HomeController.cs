@@ -59,10 +59,10 @@ namespace Buffet.Controllers
             return View(viewmodel);
         }
 
-        public IActionResult Login()
-        {
-            return View();
-        }
+        // public IActionResult Login()
+        // {
+        //     return View();
+        // }
         
         public IActionResult Privacy()
         {
@@ -74,15 +74,15 @@ namespace Buffet.Controllers
             return View();
         }
         
-        public IActionResult ForgotPassword()
-        {
-            return View();
-        }
-        
-        public IActionResult CreateAccount()
-        {
-            return View();
-        }
+        // public IActionResult ForgotPassword()
+        // {
+        //     return View();
+        // }
+        //
+        // public IActionResult CreateAccount()
+        // {
+        //     return View();
+        // }
 
         // public IActionResult Clientes()
         // {
