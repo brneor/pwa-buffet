@@ -23,25 +23,38 @@ namespace Buffet.Controllers
             var viewModel = new LoginViewModel();
 
             viewModel.Mensagem = (string) TempData["msg-login"];
+            viewModel.Erro = (string) TempData["erro-login"];
             
             return View(viewModel);
         }
 
         [HttpPost]
-        public RedirectResult Login(AcessoLoginRequestModel request)
+        public async Task<IActionResult> Login(AcessoLoginRequestModel request)
         {
-            var redirectUrl = "/Acesso/Login";
-
             var email = request.UserEmail;
             var senha = request.UserPasswd;
 
             if (email == null || senha == null)
             {
                 TempData["msg-login"] = "É necessário preencher email e senha!";
-                return Redirect(redirectUrl);
+                return RedirectToAction("Login");
             }
             
-            return Redirect(redirectUrl);
+            try
+            {
+                await _acessoService.Login(email, senha);
+                return RedirectToRoute(new
+                {
+                    controller = "Inner",
+                    action = "Start"
+                });
+            }
+            catch (Exception exception)
+            {
+                TempData["erro-login"] = exception.Message;
+            }
+            
+            return RedirectToAction("Login");
         }
         
         public IActionResult ForgotPassword()

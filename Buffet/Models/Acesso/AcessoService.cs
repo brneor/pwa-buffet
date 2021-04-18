@@ -32,9 +32,14 @@ namespace Buffet.Models.Acesso
             
         }
 
-        // public void Login()
-        // {
-        //     
-        // }
+        public async Task Login(string email, string senha)
+        {
+            var resultado = await _signInManager.PasswordSignInAsync(email, senha, false, false);
+            
+            if (!resultado.Succeeded)
+            {
+                throw new Exception("Usuário ou senha inválidos!");
+            }
+        }
     }
 }
