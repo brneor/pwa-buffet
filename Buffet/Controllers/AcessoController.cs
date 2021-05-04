@@ -68,7 +68,7 @@ namespace Buffet.Controllers
             var viewModel = new CreateAccountViewModel();
 
             viewModel.Mensagem = (string) TempData["msg-cadastro"];
-            viewModel.ErrosCadastro = (string[]) TempData["erros-cadastro"];
+            viewModel.ErrosCadastro = TempData["erros-cadastro"] as string[];
             
             return View(viewModel);
         }
