@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using Buffet.Models.Buffet.Evento;
 
 namespace Buffet.Models.Buffet.Cliente
 {
@@ -16,6 +18,8 @@ namespace Buffet.Models.Buffet.Cliente
         public string Email { get; set; }
         public string Endereco { get; set; }
         public string Observacoes { get; set; }
+        [InverseProperty("Cliente")]
+        public List<EventoEntity> Eventos { get; set; }
         public DateTime DataCadastro { get; set; }
         public DateTime DataAlteracao { get; set; }
     }

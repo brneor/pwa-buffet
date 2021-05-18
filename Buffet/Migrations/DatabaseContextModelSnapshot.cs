@@ -226,7 +226,7 @@ namespace Buffet.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int?>("ClienteId")
+                    b.Property<int>("ClienteId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("DataAlteracao")
@@ -432,8 +432,10 @@ namespace Buffet.Migrations
             modelBuilder.Entity("Buffet.Models.Buffet.Evento.EventoEntity", b =>
                 {
                     b.HasOne("Buffet.Models.Buffet.Cliente.ClienteEntity", "Cliente")
-                        .WithMany()
-                        .HasForeignKey("ClienteId");
+                        .WithMany("Eventos")
+                        .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("Buffet.Models.Buffet.Local.LocalEntity", "Local")
                         .WithMany()

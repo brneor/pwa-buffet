@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 using Buffet.Models.Buffet.Cliente;
 using Buffet.Models.Buffet.Local;
 
@@ -11,6 +12,8 @@ namespace Buffet.Models.Buffet.Evento
         public string Descricao { get; set; }
         public DateTime HoraInicio { get; set; }
         public DateTime HoraTermino { get; set; }
+        [ForeignKey("Cliente")]
+        public int ClienteId { get; set; }
         public ClienteEntity Cliente { get; set; }
         public SituacaoEventoEntity SituacaoEvento { get; set; }
         public LocalEntity Local { get; set; }
