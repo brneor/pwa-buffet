@@ -42,6 +42,7 @@ namespace Buffet.Controllers
                 return NotFound();
             }
 
+            clienteEntity.Eventos = await _context.Eventos.Where(e => e.ClienteId.Equals(clienteEntity.Id)).ToListAsync();
             return View(clienteEntity);
         }
 
@@ -150,8 +151,12 @@ namespace Buffet.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var clienteEntity = await _context.Clientes.FindAsync(id);
-            _context.Clientes.Remove(clienteEntity);
-            await _context.SaveChangesAsync();
+            var eventos = await _context.Eventos.Where(e => e.ClienteId.Equals(clienteEntity.Id)).ToListAsync();
+            if (eventos.Count == 0)
+            {
+                _context.Clientes.Remove(clienteEntity);
+                await _context.SaveChangesAsync();
+            }
             return RedirectToAction(nameof(Index));
         }
 
