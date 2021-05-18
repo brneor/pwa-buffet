@@ -1,11 +1,14 @@
 using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Buffet.Models.Buffet.Cliente
 {
     public class ClienteEntity
     {
         public int Id { get; set; }
-        public TipoClienteEntity TipoCliente { get; set; }
+        [ForeignKey("TipoCliente")]
+        public string TipoClienteId { get; set; }
+        public virtual TipoClienteEntity TipoCliente { get; set; }
         public string Cpf { get; set; }
         public DateTime DataNascimento { get; set; }
         public string Cnpj { get; set; }

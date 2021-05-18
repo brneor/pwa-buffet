@@ -12,8 +12,12 @@ namespace Buffet.Data
     public class DatabaseContext : IdentityDbContext<Usuario, Papel, Guid>
     {
         public DbSet<ClienteEntity> Clientes { get; set; }
+        public DbSet<TipoClienteEntity> TipoCliente { get; set; }
         public DbSet<EventoEntity> Eventos { get; set; }
+        public DbSet<SituacaoEventoEntity> SituacaoEvento { get; set; }
+        public DbSet<TipoEventoEntity> TipoEvento { get; set; }
         public DbSet<ConvidadoEntity> Convidados { get; set; }
+        public DbSet<SituacaoConvidadoEntity> SituacaoConvidado { get; set; }
         public DbSet<LocalEntity> Locais { get; set; }
         
         public DatabaseContext(DbContextOptions<DatabaseContext> options)
