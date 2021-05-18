@@ -54,7 +54,7 @@ namespace Buffet.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Cpf,DataNascimento,Cnpj,Nome,Email,Endereco,Observacoes,DataCadastro,DataAlteracao")] ClienteEntity clienteEntity)
+        public async Task<IActionResult> Create([Bind("Id,TipoClienteId,Cpf,DataNascimento,Cnpj,Nome,Email,Endereco,Observacoes,DataCadastro,DataAlteracao")] ClienteEntity clienteEntity)
         {
             if (ModelState.IsValid)
             {
@@ -88,7 +88,7 @@ namespace Buffet.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Cpf,DataNascimento,Cnpj,Nome,Email,Endereco,Observacoes,DataCadastro,DataAlteracao")] ClienteEntity clienteEntity)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,TipoClienteId,Cpf,DataNascimento,Cnpj,Nome,Email,Endereco,Observacoes,DataCadastro,DataAlteracao")] ClienteEntity clienteEntity)
         {
             if (id != clienteEntity.Id)
             {
