@@ -46,6 +46,7 @@ namespace Buffet.Controllers
         // GET: Evento/Create
         public IActionResult Create()
         {
+            // var clientes = _context.Clientes.ToList();
             return View();
         }
 
@@ -58,6 +59,8 @@ namespace Buffet.Controllers
         {
             if (ModelState.IsValid)
             {
+                eventoEntity.DataCadastro = DateTime.Now;
+                eventoEntity.DataAlteracao = DateTime.Now;
                 _context.Add(eventoEntity);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -97,6 +100,7 @@ namespace Buffet.Controllers
             {
                 try
                 {
+                    eventoEntity.DataAlteracao = DateTime.Now;
                     _context.Update(eventoEntity);
                     await _context.SaveChangesAsync();
                 }

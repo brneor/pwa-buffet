@@ -58,6 +58,8 @@ namespace Buffet.Controllers
         {
             if (ModelState.IsValid)
             {
+                clienteEntity.DataCadastro = DateTime.Now;
+                clienteEntity.DataAlteracao = DateTime.Now;
                 _context.Add(clienteEntity);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -97,6 +99,7 @@ namespace Buffet.Controllers
             {
                 try
                 {
+                    clienteEntity.DataAlteracao = DateTime.Now;
                     _context.Update(clienteEntity);
                     await _context.SaveChangesAsync();
                 }
