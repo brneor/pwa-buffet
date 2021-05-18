@@ -1,36 +1,30 @@
 @model IEnumerable<Buffet.Models.Buffet.Evento.EventoEntity>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Eventos";
     Layout = "~/Views/Shared/_InnerLayout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Eventos</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Descricao)
+                Descrição
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HoraInicio)
+                Início
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HoraTermino)
+                Término
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Observacoes)
+                Observações
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataCadastro)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DataAlteracao)
-            </th>
+            <th></th>
+            <th></th>
             <th></th>
         </tr>
     </thead>
@@ -50,17 +44,19 @@
                 @Html.DisplayFor(modelItem => item.Observacoes)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DataCadastro)
+                <a asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit btn btn-outline-dark"></i></a>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DataAlteracao)
+                <a asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-eye btn btn-outline-dark"></i></a>
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash btn btn-outline-danger"></i></a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+
+<a asp-action="Create" class="float">
+    <i class="fa fa-plus feather-32" data-feather="plus"></i>
+</a>

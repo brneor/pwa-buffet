@@ -1,55 +1,54 @@
 @model Buffet.Models.Buffet.Evento.EventoEntity
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes";
     Layout = "~/Views/Shared/_InnerLayout.cshtml";
 }
-
-<h1>Details</h1>
+<h1>@Html.DisplayFor(model => model.Descricao)</h1>
 
 <div>
-    <h4>EventoEntity</h4>
+    <a asp-action="Index"><i class="fa fa-arrow-left btn btn-outline-dark"></i></a>
+    <a asp-action="Edit" asp-route-id="@Model.Id"><i class="fa fa-edit btn btn-outline-dark"></i></a>
+</div>
+
+<div>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Descricao)
+            Descrição
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Descricao)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HoraInicio)
+            Início
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.HoraInicio)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.HoraTermino)
+            Término
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.HoraTermino)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Observacoes)
+            Observações
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Observacoes)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataCadastro)
+            Data de cadastro
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.DataCadastro)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DataAlteracao)
+            Data de alteração
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.DataAlteracao)
         </dd>
     </dl>
-</div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
 </div>

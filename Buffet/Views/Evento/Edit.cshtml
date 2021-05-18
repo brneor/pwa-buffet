@@ -1,57 +1,51 @@
 @model Buffet.Models.Buffet.Evento.EventoEntity
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar";
     Layout = "~/Views/Shared/_InnerLayout.cshtml";
 }
 
-<h1>Edit</h1>
+<h1>Evento</h1>
+<div>
+    <a asp-action="Index"><i class="fa fa-arrow-left btn btn-outline-dark"></i></a>
+</div>
 
-<h4>EventoEntity</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+    <div class="row">
+        <div class="col-md-6 pl-1 pr-1">
             <div class="form-group">
                 <label asp-for="Descricao" class="control-label"></label>
-                <input asp-for="Descricao" class="form-control" />
+                <input asp-for="Descricao" class="form-control"/>
                 <span asp-validation-for="Descricao" class="text-danger"></span>
             </div>
+        </div>
+        <div class="col-md-3 pl-1 pr-1">
             <div class="form-group">
                 <label asp-for="HoraInicio" class="control-label"></label>
-                <input asp-for="HoraInicio" class="form-control" />
+                <input asp-for="HoraInicio" type="datetime-local" class="form-control"/>
                 <span asp-validation-for="HoraInicio" class="text-danger"></span>
             </div>
+        </div>
+        <div class="col-md-3 pl-1 pr-1">
             <div class="form-group">
                 <label asp-for="HoraTermino" class="control-label"></label>
-                <input asp-for="HoraTermino" class="form-control" />
+                <input asp-for="HoraTermino" class="form-control"/>
                 <span asp-validation-for="HoraTermino" class="text-danger"></span>
             </div>
+        </div>
+        <div class="col-md-12 pl-1 pr-1">
             <div class="form-group">
                 <label asp-for="Observacoes" class="control-label"></label>
-                <input asp-for="Observacoes" class="form-control" />
+                <textarea asp-for="Observacoes" class="form-control"></textarea>
                 <span asp-validation-for="Observacoes" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="DataCadastro" class="control-label"></label>
-                <input asp-for="DataCadastro" class="form-control" />
-                <span asp-validation-for="DataCadastro" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataAlteracao" class="control-label"></label>
-                <input asp-for="DataAlteracao" class="form-control" />
-                <span asp-validation-for="DataAlteracao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
+        
+        <div class="form-group">
+            <input type="submit" value="Salvar" class="btn btn-outline-dark"/>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
+</form>
