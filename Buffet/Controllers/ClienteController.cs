@@ -22,7 +22,8 @@ namespace Buffet.Controllers
         // GET: Cliente
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Clientes.ToListAsync());
+            var databaseContext = _context.Clientes.Include(c => c.TipoCliente);
+            return View(await databaseContext.ToListAsync());
         }
 
         // GET: Cliente/Details/5
@@ -34,6 +35,7 @@ namespace Buffet.Controllers
             }
 
             var clienteEntity = await _context.Clientes
+                .Include(c => c.TipoCliente)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (clienteEntity == null)
             {
@@ -46,6 +48,7 @@ namespace Buffet.Controllers
         // GET: Cliente/Create
         public IActionResult Create()
         {
+            ViewData["TipoClienteId"] = new SelectList(_context.TipoCliente, "Id", "Descricao");
             return View();
         }
 
@@ -64,6 +67,7 @@ namespace Buffet.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["TipoClienteId"] = new SelectList(_context.TipoCliente, "Id", "Descricao", clienteEntity.TipoClienteId);
             return View(clienteEntity);
         }
 
@@ -80,6 +84,7 @@ namespace Buffet.Controllers
             {
                 return NotFound();
             }
+            ViewData["TipoClienteId"] = new SelectList(_context.TipoCliente, "Id", "Descricao", clienteEntity.TipoClienteId);
             return View(clienteEntity);
         }
 
@@ -116,6 +121,7 @@ namespace Buffet.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["TipoClienteId"] = new SelectList(_context.TipoCliente, "Id", "Descricao", clienteEntity.TipoClienteId);
             return View(clienteEntity);
         }
 
@@ -128,6 +134,7 @@ namespace Buffet.Controllers
             }
 
             var clienteEntity = await _context.Clientes
+                .Include(c => c.TipoCliente)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (clienteEntity == null)
             {

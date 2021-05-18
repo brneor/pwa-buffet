@@ -14,61 +14,67 @@
 <div>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nome)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nome)
-        </dd>
-        <dt class="col-sm-2">
-            Data de nascimento
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DataNascimento)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Cpf)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Cpf)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Cnpj)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Cnpj)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-        <dt class="col-sm-2">
-            Endereço
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Endereco)
-        </dd>
-        <dt class="col-sm-2">
-            Observações
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Observacoes)
-        </dd>
-        <dt class="col-sm-2">
-            Data de cadastro
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DataCadastro)
-        </dd>
-        <dt class="col-sm-2">
-            Data da última alteração
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DataAlteracao)
-        </dd>
-    </dl>
+            <dt class = "col-sm-2">
+                Tipo de cliente
+            </dt>
+            <dd class = "col-sm-10">
+                @Html.DisplayFor(model => model.TipoCliente.Descricao)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Nome)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Nome)
+            </dd>
+            <dt class="col-sm-2">
+                Data de nascimento
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DataNascimento)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Cpf)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Cpf)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Cnpj)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Cnpj)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+            <dt class="col-sm-2">
+                Endereço
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Endereco)
+            </dd>
+            <dt class="col-sm-2">
+                Observações
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Observacoes)
+            </dd>
+            <dt class="col-sm-2">
+                Data de cadastro
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DataCadastro)
+            </dd>
+            <dt class="col-sm-2">
+                Data da última alteração
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DataAlteracao)
+            </dd>
+        </dl>
 </div>
     
     <form asp-action="Delete">

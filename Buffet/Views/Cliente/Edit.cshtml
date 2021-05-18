@@ -31,12 +31,18 @@
         </div>
         <div class="col-md-3 pl-1 pr-1">
             <div class="form-group">
+                <label asp-for="TipoClienteId" class="control-label">Tipo de cliente</label>
+                <select asp-for="TipoClienteId" class ="custom-select" asp-items="ViewBag.TipoClienteId"></select>
+            </div>
+        </div>
+        <div class="col-md-3 pl-1" id="cCpf">
+            <div class="form-group">
                 <label asp-for="Cpf" class="control-label">CPF</label>
                 <input asp-for="Cpf" class="form-control"/>
                 <span asp-validation-for="Cpf" class="text-danger"></span>
             </div>
         </div>
-        <div class="col-md-3 pl-1">
+        <div class="col-md-3 pl-1" style="display: none" id="cCnpj">
             <div class="form-group">
                 <label asp-for="Cnpj" class="control-label">CNPJ</label>
                 <input asp-for="Cnpj" class="form-control"/>
@@ -72,3 +78,17 @@
         <input type="submit" value="Salvar" class="btn btn-outline-dark"/>
     </div>
 </form>
+
+<script>
+    document.querySelector("#TipoClienteId").addEventListener("change", function () {
+        let tipoCliente = document.querySelector("#TipoClienteId").value;
+        if (tipoCliente === "1") {
+            document.querySelector("#cCnpj").style.display = "none";
+            document.querySelector("#cCpf").style.display = "block";
+        }
+        if (tipoCliente === "2") {
+            document.querySelector("#cCnpj").style.display = "block";
+            document.querySelector("#cCpf").style.display = "none";
+        }
+    });
+</script>
