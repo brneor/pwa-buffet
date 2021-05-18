@@ -1,72 +1,74 @@
 @model Buffet.Models.Buffet.Cliente.ClienteEntity
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar";
     Layout = "~/Views/Shared/_InnerLayout.cshtml";
 }
 
-<h1>Edit</h1>
+<h1>Cliente</h1>
+<div>
+    <a asp-action="Index"><i class="fa fa-arrow-left btn btn-outline-dark"></i></a>
+</div>
 
-<h4>ClienteEntity</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Id" />
+<form asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+    <div class="row">
+        <div class="col-md-4 pl-1 pr-1 pl-1 pr-1">
             <div class="form-group">
-                <label asp-for="Cpf" class="control-label"></label>
-                <input asp-for="Cpf" class="form-control" />
-                <span asp-validation-for="Cpf" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataNascimento" class="control-label"></label>
-                <input asp-for="DataNascimento" class="form-control" />
-                <span asp-validation-for="DataNascimento" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Cnpj" class="control-label"></label>
-                <input asp-for="Cnpj" class="form-control" />
-                <span asp-validation-for="Cnpj" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Nome" class="control-label"></label>
-                <input asp-for="Nome" class="form-control" />
+                <label asp-for="Nome" class="control-label">Nome</label>
+                <input asp-for="Nome" class="form-control"/>
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
+        </div>
+        <div class="col-md-2 pl-1 pr-1">
             <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
+                <label asp-for="DataNascimento" class="control-label">Nascimento</label>
+                <input asp-for="DataNascimento" type="date" class="form-control"/>
+                <span asp-validation-for="DataNascimento" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-3 pl-1 pr-1">
+            <div class="form-group">
+                <label asp-for="Cpf" class="control-label">CPF</label>
+                <input asp-for="Cpf" class="form-control"/>
+                <span asp-validation-for="Cpf" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-3 pl-1 pr-1">
+            <div class="form-group">
+                <label asp-for="Cnpj" class="control-label">CNPJ</label>
+                <input asp-for="Cnpj" class="form-control"/>
+                <span asp-validation-for="Cnpj" class="text-danger"></span>
+            </div>
+        </div>
+        
+        <div class="col-md-4 pl-1 pr-1">
+            <div class="form-group">
+                <label asp-for="Email" class="control-label">Email</label>
+                <input asp-for="Email" class="form-control"/>
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
+        </div>
+        
+        <div class="col-md-8 pl-1 pr-1">
             <div class="form-group">
-                <label asp-for="Endereco" class="control-label"></label>
-                <input asp-for="Endereco" class="form-control" />
+                <label asp-for="Endereco" class="control-label">Endereço</label>
+                <input asp-for="Endereco" class="form-control"/>
                 <span asp-validation-for="Endereco" class="text-danger"></span>
             </div>
+        </div>
+
+        <div class="col-md-12 pl-1 pr-1">
             <div class="form-group">
-                <label asp-for="Observacoes" class="control-label"></label>
-                <input asp-for="Observacoes" class="form-control" />
+                <label asp-for="Observacoes" class="control-label">Observações</label>
+                <textarea asp-for="Observacoes" class="form-control"></textarea>
                 <span asp-validation-for="Observacoes" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="DataCadastro" class="control-label"></label>
-                <input asp-for="DataCadastro" class="form-control" />
-                <span asp-validation-for="DataCadastro" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DataAlteracao" class="control-label"></label>
-                <input asp-for="DataAlteracao" class="form-control" />
-                <span asp-validation-for="DataAlteracao" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Salvar" class="btn btn-outline-dark"/>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
+</form>
