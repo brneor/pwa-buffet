@@ -468,7 +468,7 @@ namespace Buffet.Migrations
                         .IsRequired();
 
                     b.HasOne("Buffet.Models.Buffet.Local.LocalEntity", "Local")
-                        .WithMany()
+                        .WithMany("Eventos")
                         .HasForeignKey("LocalEntityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

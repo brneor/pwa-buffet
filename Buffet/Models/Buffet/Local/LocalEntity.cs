@@ -9,7 +9,7 @@ namespace Buffet.Models.Buffet.Local
         public int Id { get; set; }
         public string Descricao { get; set; }
         public string Endereco { get; set; }
-        // [InverseProperty("Local")]
-        // public List<EventoEntity> Eventos { get; set; }
+        [InverseProperty("Local")]
+        public List<EventoEntity> Eventos { get; set; }
     }
 }
