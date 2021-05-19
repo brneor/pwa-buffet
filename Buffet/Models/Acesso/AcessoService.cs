@@ -1,7 +1,9 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Buffet.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace Buffet.Models.Acesso
 {
@@ -43,12 +45,23 @@ namespace Buffet.Models.Acesso
             {
                 throw new Exception("Usuário ou senha inválidos!");
             }
+            else
+            {
+                var loginHistoryEntry = new LoginHistory();
+                var userId = _signInManager.UserManager.GetUserId(_signInManager.Context.User);
+                loginHistoryEntry.UserId = Guid.Parse(userId);
+                loginHistoryEntry.LoginDateTime = DateTime.Now;
+                _databaseContext.Add(loginHistoryEntry);
+                await _databaseContext.SaveChangesAsync();
+            }
         }
 
         public Usuario GetUser()
         {
             var userId = _signInManager.UserManager.GetUserId(_signInManager.Context.User);
-            return _databaseContext.Users.Find(Guid.Parse(userId));
+            var user = _databaseContext.Users.Find(Guid.Parse(userId));
+            user.LoginHistories = _databaseContext.LoginHistories.Where(l => l.UserId.Equals(Guid.Parse(userId))).ToList();
+            return user;
         }
     }
 }
