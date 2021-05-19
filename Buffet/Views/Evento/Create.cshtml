@@ -24,15 +24,51 @@
         <div class="col-md-3 pl-1 pr-1">
             <div class="form-group">
                 <label asp-for="HoraInicio" class="control-label">Início</label>
-                <input asp-for="HoraInicio" type="datetime-local" class="form-control"/>
+                <input asp-for="HoraInicio" type="date" class="form-control"/>
                 <span asp-validation-for="HoraInicio" class="text-danger"></span>
             </div>
         </div>
         <div class="col-md-3 pl-1">
             <div class="form-group">
                 <label asp-for="HoraTermino" class="control-label">Término</label>
-                <input asp-for="HoraTermino" class="form-control"/>
+                <input asp-for="HoraTermino" type="date" class="form-control"/>
                 <span asp-validation-for="HoraTermino" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-3 pr-1">
+            <div class="form-group">
+                <label asp-for="TipoEventoId" class="control-label">Tipo de evento</label>
+                <select asp-for="TipoEventoId" class="custom-select" asp-items="ViewBag.TipoEventoId">
+                    <option value="" selected></option>
+                </select>
+                <span asp-validation-for="TipoEventoId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-3 pl-1 pr-1">
+            <div class="form-group">
+                <label asp-for="ClienteId" class="control-label">Cliente</label>
+                <select asp-for="ClienteId" class="custom-select" asp-items="ViewBag.ClienteId">
+                    <option value="" selected></option>
+                </select>
+                <span asp-validation-for="ClienteId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-3 pl-1 pr-1">
+            <div class="form-group">
+                <label asp-for="SituacaoEventoId" class="control-label">Situação do evento</label>
+                <select asp-for="SituacaoEventoId" class="custom-select" asp-items="ViewBag.SituacaoEventoId">
+                    <option value="" selected></option>
+                </select>
+                <span asp-validation-for="SituacaoEventoId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-md-3 pl-1">
+            <div class="form-group">
+                <label asp-for="LocalEntityId" class="control-label">Local</label>
+                <select asp-for="LocalEntityId" class="custom-select" asp-items="ViewBag.LocalEntityId">
+                    <option value="" selected></option>
+                </select>
+                <span asp-validation-for="LocalEntityId" class="text-danger"></span>
             </div>
         </div>
         <div class="col-md-12">

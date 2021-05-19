@@ -22,7 +22,8 @@ namespace Buffet.Controllers
         // GET: Evento
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Eventos.ToListAsync());
+            var databaseContext = _context.Eventos.Include(e => e.Cliente).Include(e => e.Local).Include(e => e.SituacaoEvento).Include(e => e.TipoEvento);
+            return View(await databaseContext.ToListAsync());
         }
 
         // GET: Evento/Details/5
@@ -34,6 +35,10 @@ namespace Buffet.Controllers
             }
 
             var eventoEntity = await _context.Eventos
+                .Include(e => e.Cliente)
+                .Include(e => e.Local)
+                .Include(e => e.SituacaoEvento)
+                .Include(e => e.TipoEvento)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (eventoEntity == null)
             {
@@ -46,7 +51,10 @@ namespace Buffet.Controllers
         // GET: Evento/Create
         public IActionResult Create()
         {
-            // var clientes = _context.Clientes.ToList();
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Nome");
+            ViewData["LocalEntityId"] = new SelectList(_context.Locais, "Id", "Descricao");
+            ViewData["SituacaoEventoId"] = new SelectList(_context.SituacaoEvento, "Id", "Descricao");
+            ViewData["TipoEventoId"] = new SelectList(_context.TipoEvento, "Id", "Descricao");
             return View();
         }
 
@@ -55,16 +63,20 @@ namespace Buffet.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Descricao,HoraInicio,HoraTermino,Observacoes,DataCadastro,DataAlteracao")] EventoEntity eventoEntity)
+        public async Task<IActionResult> Create([Bind("Id,TipoEventoId,Descricao,HoraInicio,HoraTermino,ClienteId,SituacaoEventoId,LocalEntityId,Observacoes,DataCadastro,DataAlteracao")] EventoEntity eventoEntity)
         {
             if (ModelState.IsValid)
             {
-                eventoEntity.DataCadastro = DateTime.Now;
                 eventoEntity.DataAlteracao = DateTime.Now;
+                eventoEntity.DataCadastro = DateTime.Now;
                 _context.Add(eventoEntity);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Nome", eventoEntity.ClienteId);
+            ViewData["LocalEntityId"] = new SelectList(_context.Locais, "Id", "Descricao", eventoEntity.LocalEntityId);
+            ViewData["SituacaoEventoId"] = new SelectList(_context.SituacaoEvento, "Id", "Descricao", eventoEntity.SituacaoEventoId);
+            ViewData["TipoEventoId"] = new SelectList(_context.TipoEvento, "Id", "Descricao", eventoEntity.TipoEventoId);
             return View(eventoEntity);
         }
 
@@ -81,6 +93,10 @@ namespace Buffet.Controllers
             {
                 return NotFound();
             }
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Nome", eventoEntity.ClienteId);
+            ViewData["LocalEntityId"] = new SelectList(_context.Locais, "Id", "Descricao", eventoEntity.LocalEntityId);
+            ViewData["SituacaoEventoId"] = new SelectList(_context.SituacaoEvento, "Id", "Descricao", eventoEntity.SituacaoEventoId);
+            ViewData["TipoEventoId"] = new SelectList(_context.TipoEvento, "Id", "Descricao", eventoEntity.TipoEventoId);
             return View(eventoEntity);
         }
 
@@ -89,7 +105,7 @@ namespace Buffet.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Descricao,HoraInicio,HoraTermino,Observacoes,DataCadastro,DataAlteracao")] EventoEntity eventoEntity)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,TipoEventoId,Descricao,HoraInicio,HoraTermino,ClienteId,SituacaoEventoId,LocalEntityId,Observacoes,DataCadastro,DataAlteracao")] EventoEntity eventoEntity)
         {
             if (id != eventoEntity.Id)
             {
@@ -117,6 +133,10 @@ namespace Buffet.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Nome", eventoEntity.ClienteId);
+            ViewData["LocalEntityId"] = new SelectList(_context.Locais, "Id", "Descricao", eventoEntity.LocalEntityId);
+            ViewData["SituacaoEventoId"] = new SelectList(_context.SituacaoEvento, "Id", "Descricao", eventoEntity.SituacaoEventoId);
+            ViewData["TipoEventoId"] = new SelectList(_context.TipoEvento, "Id", "Descricao", eventoEntity.TipoEventoId);
             return View(eventoEntity);
         }
 
@@ -129,6 +149,10 @@ namespace Buffet.Controllers
             }
 
             var eventoEntity = await _context.Eventos
+                .Include(e => e.Cliente)
+                .Include(e => e.Local)
+                .Include(e => e.SituacaoEvento)
+                .Include(e => e.TipoEvento)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (eventoEntity == null)
             {

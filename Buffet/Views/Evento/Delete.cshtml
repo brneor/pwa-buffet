@@ -21,6 +21,30 @@
             @Html.DisplayFor(model => model.Descricao)
         </dd>
         <dt class = "col-sm-2">
+            Tipo do evento
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TipoEvento.Descricao)
+        </dd>
+        <dt class = "col-sm-2">
+            Cliente
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cliente.Nome)
+        </dd>
+        <dt class = "col-sm-2">
+            Situação do evento
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SituacaoEvento.Descricao)
+        </dd>
+        <dt class = "col-sm-2">
+            Local do evento
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Local.Descricao)
+        </dd>
+        <dt class = "col-sm-2">
             Início
         </dt>
         <dd class = "col-sm-10">
