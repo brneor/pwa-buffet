@@ -20,10 +20,13 @@ namespace Buffet.Controllers
         }
 
         // GET: Cliente
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? nome, string? cpf)
         {
+            Console.WriteLine(nome);
+            Console.WriteLine(cpf);
             var databaseContext = _context.Clientes.Include(c => c.TipoCliente);
-            return View(await databaseContext.ToListAsync());
+            var test = _context.Clientes.Where(c => c.Nome.Contains(nome));
+            return View(await test.ToListAsync());
         }
 
         // GET: Cliente/Details/5
