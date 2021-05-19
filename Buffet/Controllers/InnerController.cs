@@ -9,18 +9,22 @@ namespace Buffet.Controllers
 {
     public class InnerController : Controller
     {
-        private readonly DatabaseContext _context;
+        private readonly AcessoService _acessoService;
+
+        public InnerController(AcessoService acessoService)
+        {
+            _acessoService = acessoService;
+        }
 
         public IActionResult Start()
         {
             return View();
         }
 
-        public async Task<IActionResult> User()
+        public IActionResult User()
         {
-            var login = HttpContext.User.Identity.Name;
-            // var user = _context.Users.Where(u => u.UserName.Equals(login));
-            return View();
+            var user = _acessoService.GetUser();
+            return View(user);
         }
 
         public IActionResult Help()

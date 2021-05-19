@@ -20,6 +20,8 @@ namespace Buffet.Data
         public DbSet<SituacaoConvidadoEntity> SituacaoConvidado { get; set; }
         public DbSet<LocalEntity> Locais { get; set; }
         
+        public DbSet<LoginHistory> LoginHistories { get; set; } 
+        
         public DatabaseContext(DbContextOptions<DatabaseContext> options)
         :base (options)
         {
