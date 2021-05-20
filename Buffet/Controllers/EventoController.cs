@@ -20,10 +20,11 @@ namespace Buffet.Controllers
         }
 
         // GET: Evento
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? descricao)
         {
-            var databaseContext = _context.Eventos.Include(e => e.Cliente).Include(e => e.Local).Include(e => e.SituacaoEvento).Include(e => e.TipoEvento);
-            return View(await databaseContext.ToListAsync());
+            IQueryable<EventoEntity> eventos;
+            eventos = descricao != null ? _context.Eventos.Where(c => c.Descricao.Contains(descricao)) : _context.Eventos.Include(e => e.Cliente).Include(e => e.Local).Include(e => e.SituacaoEvento).Include(e => e.TipoEvento);
+            return View(await eventos.ToListAsync());
         }
 
         // GET: Evento/Details/5
