@@ -22,11 +22,10 @@ namespace Buffet.Controllers
         // GET: Cliente
         public async Task<IActionResult> Index(string? nome, string? cpf)
         {
-            Console.WriteLine(nome);
-            Console.WriteLine(cpf);
-            var databaseContext = _context.Clientes.Include(c => c.TipoCliente);
-            var test = _context.Clientes.Where(c => c.Nome.Contains(nome));
-            return View(await test.ToListAsync());
+            IQueryable<ClienteEntity> databaseContext;
+            databaseContext = nome != null ? _context.Clientes.Where(c => c.Nome.Contains(nome)) : _context.Clientes.Include(c => c.TipoCliente);
+            
+            return View(await databaseContext.ToListAsync());
         }
 
         // GET: Cliente/Details/5
