@@ -20,9 +20,12 @@ namespace Buffet.Controllers
         }
 
         // GET: Local
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string? descricao)
         {
-            return View(await _context.Locais.ToListAsync());
+            IQueryable<LocalEntity> locais;
+            locais = descricao != null ? _context.Locais.Where(l => l.Descricao.Contains(descricao)) : _context.Locais;
+            
+            return View(await locais.ToListAsync());
         }
 
         // GET: Local/Details/5

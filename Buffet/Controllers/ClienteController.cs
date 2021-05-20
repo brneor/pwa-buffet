@@ -20,7 +20,7 @@ namespace Buffet.Controllers
         }
 
         // GET: Cliente
-        public async Task<IActionResult> Index(string? nome, string? cpf)
+        public async Task<IActionResult> Index(string? nome)
         {
             IQueryable<ClienteEntity> databaseContext;
             databaseContext = nome != null ? _context.Clientes.Where(c => c.Nome.Contains(nome)) : _context.Clientes.Include(c => c.TipoCliente);
